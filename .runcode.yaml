@@ -1,9 +1,13 @@
 onCreate:
   - sudo apt-get update -y
   - sudo apt-get upgrade -y
+  - wget https://go.dev/dl/go1.19.1.linux-amd64.tar.gz
+  - sudo rm -rf /usr/local/go && sudo rm -rf /usr/bin/go && sudo tar -C /usr/local -xzf go1.19.1.linux-amd64.tar.gz
+  - rm go1.19.1.linux-amd64.tar.gz
   - go get -u github.com/gin-gonic/gin
 
 onStart:
+  - export PATH=$PATH:/usr/local/go/bin
   - |
         WS_DOMAIN=`cat /home/ubuntu/runcode/ws-url-domain.txt`
         printf "\nGO TO THIS URL TO VIEW PAGE \033[4;34m https://8080-${WS_DOMAIN}\033[0;30m\n\n"
