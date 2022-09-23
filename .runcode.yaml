@@ -1,0 +1,10 @@
+onCreate:
+  - sudo apt-get update -y
+  - sudo apt-get upgrade -y
+  - go get -u github.com/gin-gonic/gin
+
+onStart:
+  - |
+        WS_DOMAIN=`cat /home/ubuntu/runcode/ws-url-domain.txt`
+        printf "\nGO TO THIS URL TO VIEW PAGE \033[4;34m https://8080-${WS_DOMAIN}\033[0;30m\n\n"
+        go run main.go
